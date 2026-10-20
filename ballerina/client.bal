@@ -77,7 +77,7 @@ public isolated client class Client {
 
     # Get an inventory item
     #
-    # + sku - This path parameter specifies the seller-defined SKU value of the product whose inventory item record you wish to retrieve.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank ">getInventoryItems</a> method to retrieve SKU values.<br><br><strong>Maximum length</strong>: 50
+    # + sku - Seller-defined SKU of the inventory item record to retrieve. Maximum length: 50.
     # + headers - Headers to be sent with the request 
     # + return - The requested inventory item 
     remote isolated function getInventoryItem(string sku, map<string|string[]> headers = {}) returns InventoryItemWithSkuLocaleGroupid|error {
@@ -87,7 +87,8 @@ public isolated client class Client {
 
     # Create or replace an inventory item
     #
-    # + sku - This path parameter specifies the seller-defined SKU value for the inventory item being created or updated. SKU values must be unique across the seller's inventory. <br><br><strong>Maximum length</strong>: 50
+    # + sku - This path parameter specifies the seller-defined SKU value for the inventory item being created or updated. SKU values must be unique across the seller's inventory.
+    # Maximum length: 50
     # + headers - Headers to be sent with the request 
     # + payload - Details of the inventory item record 
     # + return - Warnings returned after the inventory item was updated 
@@ -102,7 +103,9 @@ public isolated client class Client {
 
     # Delete an inventory item
     #
-    # + sku - This path parameter specifies the seller-defined SKU value of the product whose inventory item record you wish to delete.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank ">getInventoryItems</a> method to retrieve SKU values.<br><br><strong>Maximum length</strong>: 50
+    # + sku - This path parameter specifies the seller-defined SKU value of the product whose inventory item record you wish to delete.
+    # Use the getInventoryItems method to retrieve SKU values.
+    # Maximum length: 50
     # + headers - Headers to be sent with the request 
     # + return - No Content 
     remote isolated function deleteInventoryItem(string sku, map<string|string[]> headers = {}) returns error? {
@@ -123,7 +126,7 @@ public isolated client class Client {
 
     # Get product compatibility
     #
-    # + sku - This path parameter specifies the SKU (stock keeping unit) of the inventory item associated with the product compatibility list being retrieved.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank ">getInventoryItems</a> method to retrieve SKU values
+    # + sku - SKU of the inventory item whose product compatibility list is retrieved.
     # + headers - Headers to be sent with the request 
     # + return - The product compatibility list of the inventory item 
     remote isolated function getProductCompatibility(string sku, map<string|string[]> headers = {}) returns Compatibility|error {
@@ -133,7 +136,8 @@ public isolated client class Client {
 
     # Create or replace product compatibility
     #
-    # + sku - This path parameter specifies the SKU (stock keeping unit) of the inventory item associated with the compatibility list being created.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank ">getInventoryItems</a> method to retrieve SKU values
+    # + sku - This path parameter specifies the SKU (stock keeping unit) of the inventory item associated with the compatibility list being created.
+    # Use the getInventoryItems method to retrieve SKU values
     # + headers - Headers to be sent with the request 
     # + payload - Details of the compatibility 
     # + return - Warnings returned after the product compatibility was updated 
@@ -148,7 +152,7 @@ public isolated client class Client {
 
     # Delete product compatibility
     #
-    # + sku - This path parameter specifies the SKU (stock keeping unit) of the inventory item that is associated with the product compatibility list that is being deleted.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank ">getInventoryItems</a> method to retrieve SKU values
+    # + sku - SKU of the inventory item whose product compatibility list is deleted.
     # + headers - Headers to be sent with the request 
     # + return - No Content 
     remote isolated function deleteProductCompatibility(string sku, map<string|string[]> headers = {}) returns error? {
@@ -168,7 +172,7 @@ public isolated client class Client {
 
     # Create or replace an inventory item group
     #
-    # + inventoryItemGroupKey - This path parameter specifies the unique identifier of the inventory item group being created or updated. This identifier is defined by the seller.<br><br>This value cannot be changed once it is set.<br><br><b>Maximum length:</b> 50
+    # + inventoryItemGroupKey - Seller-defined unique identifier of the inventory item group to create or update. Cannot be changed once set. Maximum length: 50.
     # + headers - Headers to be sent with the request 
     # + payload - Details of the inventory Item Group 
     # + return - Warnings returned after the inventory item group was updated 
@@ -207,8 +211,8 @@ public isolated client class Client {
 
     # Get a SKU location mapping
     #
-    # + listingId - This path parameter specifies the unique identifier of the listing that the SKU belongs to for which all mapped locations will be retrieved.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank ">getOffers</a> method of the <b>Inventory API</b> or the <a href="/devzone/xml/docs/reference/ebay/getmyebayselling.html" target="_blank ">GetMyEbaySelling</a> method of the <b>Trading API</b> to retrieve all listing IDs for all active listings
-    # + sku - This path parameter specifies the seller-defined SKU value of the item/variation for which location mappings will be retrieved. This SKU value must be defined in the listing specified in <b>listingId</b> parameter<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank ">getOffers</a> method of the <b>Inventory API</b> or the <a href="/devzone/xml/docs/reference/ebay/getmyebayselling.html" target="_blank ">GetMyEbaySelling</a> method of the <b>Trading API</b> to retrieve all SKUs for all active listings
+    # + listingId - Unique identifier of the listing that contains the SKU whose mapped locations are retrieved.
+    # + sku - Seller-defined SKU of the item or variation whose location mappings are retrieved. Must be defined in the listing given by listingId.
     # + headers - Headers to be sent with the request 
     # + return - The fulfillment locations mapped to the listing and SKU 
     remote isolated function getSkuLocationMapping(string listingId, string sku, map<string|string[]> headers = {}) returns LocationMapping|error {
@@ -218,8 +222,8 @@ public isolated client class Client {
 
     # Create or replace a SKU location mapping
     #
-    # + listingId - This path parameter specifies the unique identifier of the listing for which multiple fulfillment center locations will be mapped to a SKU within that listing.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank ">getOffers</a> method of the Inventory API or the <a href="/devzone/xml/docs/reference/ebay/getmyebayselling.html" target="_blank ">GetMyEbaySelling</a> method of the Trading API to retrieve all listing IDs for all active listings
-    # + sku - This path parameter specifies the seller-defined SKU value of the item/variation for which multiple fulfillment center locations will be mapped. This SKU value must be defined in the listing specified in <b>listingId</b> parameter.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank ">getOffers</a> method of the Inventory API or the <a href="/devzone/xml/docs/reference/ebay/getmyebayselling.html" target="_blank ">GetMyEbaySelling</a> method of the Trading API to retrieve all listing IDs for all active listings.<br><br><span class="tablenote"><b>Note:</b> SKU values can be updated by a seller at any time. If a seller updates a SKU value that is being used for location mapping, this change will not be reflected until the mapping is updated through the <b>createOrReplaceSkuLocationMapping</b> method.</span>
+    # + listingId - Unique identifier of the listing in which fulfillment center locations are mapped to a SKU.
+    # + sku - Seller-defined SKU of the item or variation to map fulfillment center locations to. Must be defined in the listing given by listingId.
     # + headers - Headers to be sent with the request 
     # + payload - Fulfillment locations to map to the listing and SKU combination 
     # + return - No Content 
@@ -234,8 +238,8 @@ public isolated client class Client {
 
     # Delete a SKU location mapping
     #
-    # + listingId - This path parameter specifies the unique identifier of the listing that the SKU belongs to for which all mapped locations will be removed.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank ">getOffers</a> method of the <b>Inventory API</b> or the <a href="/devzone/xml/docs/reference/ebay/getmyebayselling.html" target="_blank ">GetMyEbaySelling</a> method of the <b>Trading API</b> to retrieve all listing IDs for all active listings
-    # + sku - This path parameter specifies the seller-defined SKU value of the item/variation for which location mappings will be removed. This SKU value must be defined in the listing specified in <b>listingId</b> parameter<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank ">getOffers</a> method of the <b>Inventory API</b> or the <a href="/devzone/xml/docs/reference/ebay/getmyebayselling.html" target="_blank ">GetMyEbaySelling</a> method of the <b>Trading API</b> to retrieve all SKUs for all active listings
+    # + listingId - Unique identifier of the listing that contains the SKU whose mapped locations are removed.
+    # + sku - Seller-defined SKU of the item or variation whose location mappings are removed. Must be defined in the listing given by listingId.
     # + headers - Headers to be sent with the request 
     # + return - No Content 
     remote isolated function deleteSkuLocationMapping(string listingId, string sku, map<string|string[]> headers = {}) returns error? {
@@ -260,7 +264,7 @@ public isolated client class Client {
     # Bulk publish offers
     #
     # + headers - Headers to be sent with the request 
-    # + payload - The base request of the <strong>bulkPublishOffer</strong> method 
+    # + payload - The base request of the bulkPublishOffer method 
     # + return - Per-offer results of the bulk publish request 
     remote isolated function bulkPublishOffer(BulkPublishOfferHeaders headers, BulkOffer payload) returns BulkPublishResponse|error {
         string resourcePath = string `/bulk_publish_offer`;
@@ -298,7 +302,8 @@ public isolated client class Client {
 
     # Get an offer
     #
-    # + offerId - This path parameter specifies the unique identifier of the offer that is to be retrieved.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> method to retrieve offer IDs
+    # + offerId - This path parameter specifies the unique identifier of the offer that is to be retrieved.
+    # Use the getOffers method to retrieve offer IDs
     # + headers - Headers to be sent with the request 
     # + return - The requested offer 
     remote isolated function getOffer(string offerId, map<string|string[]> headers = {}) returns EbayOfferDetailsWithAll|error {
@@ -308,7 +313,8 @@ public isolated client class Client {
 
     # Update an offer
     #
-    # + offerId - This path parameter specifies the unique identifier of the offer being updated.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> method to retrieve offer IDs
+    # + offerId - This path parameter specifies the unique identifier of the offer being updated.
+    # Use the getOffers method to retrieve offer IDs
     # + headers - Headers to be sent with the request 
     # + payload - Details of the offer for the channel 
     # + return - Warnings returned after the offer was updated 
@@ -323,7 +329,8 @@ public isolated client class Client {
 
     # Delete an offer
     #
-    # + offerId - This path parameter specifies the unique identifier of the offer being deleted.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> method to retrieve offer IDs
+    # + offerId - This path parameter specifies the unique identifier of the offer being deleted.
+    # Use the getOffers method to retrieve offer IDs
     # + headers - Headers to be sent with the request 
     # + return - No Content 
     remote isolated function deleteOffer(string offerId, map<string|string[]> headers = {}) returns error? {
@@ -347,7 +354,8 @@ public isolated client class Client {
 
     # Publish an offer
     #
-    # + offerId - This path parameter specifies the unique identifier of the offer that is to be published.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> method to retrieve offer IDs
+    # + offerId - This path parameter specifies the unique identifier of the offer that is to be published.
+    # Use the getOffers method to retrieve offer IDs
     # + headers - Headers to be sent with the request 
     # + return - The listing identifier and any warnings for the published offer 
     remote isolated function publishOffer(string offerId, map<string|string[]> headers = {}) returns PublishResponse|error {
@@ -372,7 +380,8 @@ public isolated client class Client {
 
     # Withdraw an offer
     #
-    # + offerId - This path parameter specifies the unique identifier of the offer that is to be withdrawn.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> method to retrieve offer IDs
+    # + offerId - This path parameter specifies the unique identifier of the offer that is to be withdrawn.
+    # Use the getOffers method to retrieve offer IDs
     # + headers - Headers to be sent with the request 
     # + return - The listing identifier of the withdrawn offer and any warnings 
     remote isolated function withdrawOffer(string offerId, map<string|string[]> headers = {}) returns WithdrawResponse|error {
@@ -384,7 +393,7 @@ public isolated client class Client {
     # Withdraw offers by inventory item group
     #
     # + headers - Headers to be sent with the request 
-    # + payload - The base request of the <strong>withdrawOfferByInventoryItemGroup</strong> call 
+    # + payload - The base request of the withdrawOfferByInventoryItemGroup call 
     # + return - No Content 
     remote isolated function withdrawOfferByInventoryItemGroup(WithdrawOfferByInventoryItemGroupHeaders headers, WithdrawByInventoryItemGroupRequest payload) returns error? {
         string resourcePath = string `/offer/withdraw_by_inventory_item_group`;
@@ -397,7 +406,7 @@ public isolated client class Client {
 
     # Get an inventory location
     #
-    # + merchantLocationKey - This path parameter specifies the unique merchant-defined key (ID) for an inventory location that is being retrieved. <br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations">getInventoryLocations</a> method to retrieve merchant location keys. <br><br><b>Maximum length</b>: 36
+    # + merchantLocationKey - Unique merchant-defined key (ID) of the inventory location to retrieve. Maximum length: 36.
     # + headers - Headers to be sent with the request 
     # + return - The requested inventory location 
     remote isolated function getInventoryLocation(string merchantLocationKey, map<string|string[]> headers = {}) returns InventoryLocationResponse|error {
@@ -407,7 +416,7 @@ public isolated client class Client {
 
     # Create an inventory location
     #
-    # + merchantLocationKey - This path parameter specifies the unique merchant-defined key (ID) for the inventory location that is to be deleted.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations">getInventoryLocations</a> method to retrieve merchant location keys.<br><br><b>Maximum length</b>: 36
+    # + merchantLocationKey - Unique merchant-defined key (ID) of the inventory location. Maximum length: 36.
     # + headers - Headers to be sent with the request 
     # + payload - Inventory Location details 
     # + return - No Content 
@@ -422,7 +431,7 @@ public isolated client class Client {
 
     # Delete an inventory location
     #
-    # + merchantLocationKey - This path parameter specifies the unique merchant-defined key (ID) for the inventory location that is to be deleted.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations">getInventoryLocations</a> method to retrieve merchant location keys.<br><br><b>Maximum length</b>: 36
+    # + merchantLocationKey - Unique merchant-defined key (ID) of the inventory location to delete. Maximum length: 36.
     # + headers - Headers to be sent with the request 
     # + return - Success 
     remote isolated function deleteInventoryLocation(string merchantLocationKey, map<string|string[]> headers = {}) returns error? {
@@ -432,7 +441,7 @@ public isolated client class Client {
 
     # Disable an inventory location
     #
-    # + merchantLocationKey - This path parameter specifies the unique merchant-defined key (ID) for an inventory location that is to be disabled. <br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations">getInventoryLocations</a> method to retrieve merchant location keys.<br><br><b>Maximum length</b>: 36
+    # + merchantLocationKey - Unique merchant-defined key (ID) of the inventory location to disable. Maximum length: 36.
     # + headers - Headers to be sent with the request 
     # + return - The inventory location was disabled 
     remote isolated function disableInventoryLocation(string merchantLocationKey, map<string|string[]> headers = {}) returns record {}|error {
@@ -443,7 +452,7 @@ public isolated client class Client {
 
     # Enable an inventory location
     #
-    # + merchantLocationKey - This path parameter specifies unique merchant-defined key (ID) for a <code>disabled</code> inventory location that is to be enabled.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations">getInventoryLocations</a> method to retrieve merchant location keys.<br><br><b>Maximum length</b>: 36
+    # + merchantLocationKey - Unique merchant-defined key (ID) of the disabled inventory location to enable. Maximum length: 36.
     # + headers - Headers to be sent with the request 
     # + return - The inventory location was enabled 
     remote isolated function enableInventoryLocation(string merchantLocationKey, map<string|string[]> headers = {}) returns record {}|error {
@@ -465,7 +474,7 @@ public isolated client class Client {
 
     # Update inventory location details
     #
-    # + merchantLocationKey - This path parameter specifies the unique merchant-defined key (ID) for an inventory location that is to be updated. <br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations">getInventoryLocations</a> method to retrieve merchant location keys. <br><br><b>Maximum length</b>: 36
+    # + merchantLocationKey - Unique merchant-defined key (ID) of the inventory location to update. Maximum length: 36.
     # + headers - Headers to be sent with the request 
     # + payload - The inventory location details to be updated 
     # + return - Success 

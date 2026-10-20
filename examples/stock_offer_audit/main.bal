@@ -1,6 +1,7 @@
 // Pages through all inventory items, looks up the offers of each SKU and reports the
 // SKUs that have no published offer.
 
+import ballerina/http;
 import ballerina/io;
 import ballerinax/ebay.inventory;
 
@@ -33,8 +34,12 @@ public function main() returns error? {
     foreach string sku in skus {
         inventory:Offers|error offers = ebay->getOffers(sku = sku);
         if offers is error {
-            unlisted.push(sku);
-            continue;
+            // eBay answers 404 for a SKU with no offers; any other failure stops the audit
+            if offers is http:ClientRequestError && offers.detail().statusCode == 404 {
+                unlisted.push(sku);
+                continue;
+            }
+            return error(string `Offer lookup failed for SKU ${sku}`, offers);
         }
         boolean hasPublished = offers.offers.some(o => o.status == "PUBLISHED");
         if !hasPublished {

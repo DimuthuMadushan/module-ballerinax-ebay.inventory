@@ -8,6 +8,8 @@
 
 The eBay Inventory connector provides programmatic access to the [eBay Sell Inventory API](https://developer.ebay.com/api-docs/sell/inventory/overview.html), which lets sellers create and manage inventory items, product compatibility, inventory item groups, offers and inventory locations. This connector supports version 1.18.8 of the Inventory API and lets Ballerina integrations create listings, update stock and prices in bulk, and publish or withdraw offers on eBay marketplaces.
 
+
+
 ## Setup guide
 
 1. Sign in to the [eBay Developers Program](https://developer.ebay.com/) and create an application keyset in the Application Keys page.

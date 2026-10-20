@@ -11,6 +11,9 @@ configurable string fulfillmentPolicyId = ?;
 configurable string paymentPolicyId = ?;
 configurable string returnPolicyId = ?;
 configurable string merchantLocationKey = ?;
+// Product details eBay needs to publish a SKU that is not matched to an eBay catalog product
+configurable string[] imageUrls = ?;
+configurable map<string[]> aspects = {"Brand": ["Unbranded"]};
 configurable string price = "19.99";
 configurable int quantity = 10;
 configurable boolean publishListing = false;
@@ -24,7 +27,12 @@ public function main() returns error? {
         {contentLanguage: "en-US", contentType: "application/json"},
         {
             condition: "NEW",
-            product: {title: "Classic Cotton T-Shirt", description: "Soft cotton t-shirt in assorted sizes"},
+            product: {
+                title: "Classic Cotton T-Shirt",
+                description: "Soft cotton t-shirt in assorted sizes",
+                imageUrls,
+                aspects
+            },
             availability: {shipToLocationAvailability: {quantity: stock}}
         });
     io:println("Inventory item saved: ", sku, itemResult is () ? " (updated)" : " (created)");

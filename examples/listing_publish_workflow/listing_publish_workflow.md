@@ -16,10 +16,13 @@ This example creates an inventory item on eBay, drafts a fixed-price offer for i
   paymentPolicyId = "<payment-policy-id>"
   returnPolicyId = "<return-policy-id>"
   merchantLocationKey = "<merchant-location-key>"
+  imageUrls = ["https://<host>/<image>.jpg"]
+  aspects = { Brand = ["Unbranded"] }
   price = "19.99"
   quantity = 10
   publishListing = false
   ```
+- `imageUrls` (at least one HTTPS image) and `aspects` (the item specifics the category requires, which you can look up with the Taxonomy API's `getItemAspectsForCategory`) are saved with the inventory item. A new SKU with no eBay catalog product identifier (ePID, UPC, ISBN or EAN) has no catalog data to fall back on, so `publishOffer` takes the listing's images and item specifics from these fields. `aspects` defaults to `Brand = ["Unbranded"]` when it is left out.
 
 ## Run the example
 
